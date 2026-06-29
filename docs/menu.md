@@ -25,6 +25,9 @@
 ---
 
 ## Opciones del menú
+<p align="center">
+<img width="500" height="475" alt="CLI-las-bases-y-sus-datos" src="https://github.com/user-attachments/assets/7dca272c-aa50-4bf4-b9ec-74985b98e2c2" />
+</p>
 
 El menú principal ofrece estas acciones:
 
