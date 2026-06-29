@@ -1,7 +1,8 @@
 # Las bases y sus datos
-<div align="center">
+<p align="center">
 <img width="455" height="412" alt="logo-gui" src="https://github.com/user-attachments/assets/56bcd84d-459e-49ad-962e-35cc150bf118" />
-</div>
+</p>
+
 [![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 ![Plataformas](https://img.shields.io/badge/Plataformas-Windows%20%7C%20Linux-blue)
 ![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?logo=powershell&logoColor=white)
