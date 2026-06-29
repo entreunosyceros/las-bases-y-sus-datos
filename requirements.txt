@@ -1,0 +1,4 @@
+# Dependencias de la interfaz grafica (opcional).
+# Los scripts gestor_bbdd.sh / gestor_bbdd.ps1 y el modo CLI NO requieren nada
+# de esto: solo la GUI (python lanzar.py --gui) necesita PySide6.
+PySide6>=6.5

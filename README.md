@@ -1,144 +1,98 @@
-# Gestor de Bases de Datos en Windows
+# Las bases y sus datos
 
-Esta herramienta en PowerShell para detectar, iniciar, detener, reiniciar y diagnosticar servicios y entornos locales de bases de datos en Windows, ha sido creada a petición de Modesto, y como reto, pues aquí la está. El proyecto está orientado a prácticas de administración de sistemas y permite gestionar tanto servicios nativos de Windows como instalaciones locales de XAMPP, WAMP, Laragon, MAMP y algunos contenedores Docker.
+[![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
+![Plataformas](https://img.shields.io/badge/Plataformas-Windows%20%7C%20Linux-blue)
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?logo=powershell&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=white)
+![Python 3](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)
+![GUI: PySide6](https://img.shields.io/badge/GUI-PySide6-41CD52?logo=qt&logoColor=white)
+![Docker · Podman](https://img.shields.io/badge/Contenedores-Docker%20%C2%B7%20Podman-2496ED?logo=docker&logoColor=white)
+[![Documentación](https://img.shields.io/badge/Documentaci%C3%B3n-docs%2F-informational)](docs/README.md)
 
-## Descripción
+Herramienta para **detectar, iniciar, detener, reiniciar y diagnosticar** servicios y entornos locales de bases de datos en **Windows y Linux**. Orientada a prácticas de administración de sistemas, unifica en un único menú la gestión de motores como MySQL, MariaDB, PostgreSQL, MongoDB, SQL Server, Redis y muchos más, mostrando su estado, puerto y consumo de memoria.
 
-El proyecto combina dos scripts:
+Fue creada originalmente para Windows a petición de Modesto; después se amplió con soporte para Linux, un lanzador multiplataforma, modo CLI/JSON y una interfaz gráfica opcional.
 
-- `gestor_bbdd.ps1`: script principal con toda la lógica de detección, administración y diagnóstico.
-- `gestor_bbdd.bat`: lanzador que solicita permisos de administrador y ejecuta el script de PowerShell.
+---
 
-La utilidad unifica en un solo menú la gestión de motores como MySQL, MariaDB, PostgreSQL, MongoDB y SQL Server, mostrando su estado, el puerto habitual y el consumo de memoria.
+## Características destacadas
 
-## Funcionalidades
+- **Multiplataforma**: scripts nativos para Windows (PowerShell) y Linux (Bash) con un lanzador común en Python.
+- **Muchos motores**: MySQL/MariaDB, PostgreSQL, MongoDB, SQL Server, Redis, Elasticsearch/OpenSearch, Cassandra/ScyllaDB, CouchDB, InfluxDB, Neo4j, ClickHouse, CockroachDB, ArangoDB, Memcached, Firebird y RethinkDB.
+- **Entornos locales**: XAMPP, WAMP, Laragon, MAMP, Bitnami, AMPPS, LocalWP, DevKinsta, Herd y más.
+- **Contenedores**: Docker, Podman y Docker Compose.
+- **Modo CLI** no interactivo con salida **JSON** para automatización.
+- **Interfaz gráfica** opcional (PySide6) que reutiliza el modo CLI/JSON.
+- **Comprobaciones de salud** reales, **logging**, **configuración persistente** y soporte **systemd / SysVinit / OpenRC**.
 
-- Detección automática de servicios de bases de datos registrados en Windows.
-- Detección de entornos locales como XAMPP, WAMP, Laragon y MAMP.
-- Identificación de procesos activos de MySQL/MariaDB, PostgreSQL, MongoDB y SQL Server.
-- Inicio, parada y reinicio de servidores desde un menú interactivo.
-- Control del número máximo de bases de datos activas simultáneamente.
-- Diagnóstico de conflictos de puertos y consumo de memoria RAM.
-- Detección de contenedores Docker con motores de bases de datos activos.
-- Ayuda para configurar servicios en modo manual.
-- Reseteo guiado de la contraseña root de MySQL/MariaDB.
-- Diagnóstico completo del equipo para detectar conflictos entre instalaciones locales.
+---
 
-## Tecnologías usadas
+## Inicio rápido
 
-- PowerShell
-- Batch de Windows
-- Comandos del sistema de Windows como `Get-Service`, `Get-Process`, `netstat`, `sc`, `Start-Service` y `Stop-Service`
+### Windows
 
-## Requisitos
-
-- Sistema operativo Windows.
-- PowerShell disponible en el sistema.
-- Permisos de administrador para iniciar o detener servicios y para algunas funciones de diagnóstico.
-- Tener instalados uno o varios motores o entornos compatibles, por ejemplo:
-  - MySQL o MariaDB
-  - PostgreSQL
-  - MongoDB
-  - SQL Server
-  - XAMPP
-  - WAMP
-  - Laragon
-  - MAMP
-  - Docker
-
-## Estructura del proyecto
-
-```text
-GESTION_BD/
-├── gestor_bbdd.bat
-├── gestor_bbdd.ps1
-└── README.md
-```
-
-## Ejecución
-
-La forma recomendada de ejecutar la herramienta es mediante el archivo `gestor_bbdd.bat`.
-
-1. Haz clic derecho sobre `gestor_bbdd.bat`.
-2. Ejecuta el archivo como administrador.
-3. El lanzador abrirá PowerShell con la política de ejecución necesaria para correr el script.
-4. Usa el menú interactivo para gestionar las bases de datos detectadas.
-
-También puede ejecutarse directamente con PowerShell:
+Haz doble clic en `gestor_bbdd.bat` (ejecutar como administrador) o:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\gestor_bbdd.ps1
 ```
 
-## Opciones del menú
+### Linux
 
-El menú principal ofrece estas acciones:
+```bash
+chmod +x gestor_bbdd.sh
+sudo ./gestor_bbdd.sh
+```
 
-- `1`: Iniciar servidor
-- `2`: Detener servidor
-- `3`: Reiniciar servidor
-- `4`: Ver puertos abiertos
-- `5`: Modo práctica
-- `6`: Detectar XAMPP, WAMP, Docker y otros entornos locales
-- `7`: Ayuda para configurar servicios en modo manual
-- `8`: Diagnóstico completo del equipo
-- `9`: Resetear password root de MySQL/MariaDB
-- `0`: Salir
+### Lanzador multiplataforma (Python 3)
 
-## Modo práctica
+```bash
+python lanzar.py          # menú interactivo del script nativo
+python lanzar.py --gui    # interfaz gráfica (requiere: pip install -r requirements.txt)
+```
 
-Incluye accesos rápidos pensados para clases o laboratorios:
+Más detalles en [Instalación y ejecución](docs/instalacion.md).
 
-- Entorno 1: MySQL + MongoDB
-- Entorno 2: PostgreSQL
+---
 
-## Qué detecta el script
+## Estructura del proyecto
 
-El script busca:
+```text
+GESTION_BD/
+├── gestor_bbdd.bat          # Lanzador Windows (pide permisos de administrador)
+├── gestor_bbdd.ps1          # Gestor principal para Windows (PowerShell)
+├── gestor_bbdd.sh           # Gestor principal para Linux (Bash)
+├── gestor_bbdd.conf.example # Plantilla de configuración persistente
+├── lanzar.py                # Lanzador multiplataforma (Python 3) + opción --gui
+├── requirements.txt         # Dependencias de la GUI (PySide6)
+├── gui/                     # Interfaz gráfica (PySide6) — cliente del modo CLI/JSON
+├── docs/                    # Documentación detallada
+└── README.md                # Este archivo
+```
 
-- Servicios de Windows relacionados con `MSSQL`, `mysql`, `maria`, `postgres`, `mongo`, `wamp` y `xampp`.
-- Procesos de bases de datos dentro de instalaciones locales conocidas.
-- Puertos comunes de bases de datos:
-  - `3306` para MySQL/MariaDB
-  - `5432` para PostgreSQL
-  - `27017` para MongoDB
-  - `1433` para SQL Server
+---
 
-## Casos de uso
+## Documentación
 
-- Preparar rápidamente un entorno de prácticas de administración de bases de datos.
-- Detectar conflictos entre varias instalaciones locales de motores de BD.
-- Ver qué servicios están activos y cuánta memoria consumen.
-- Liberar puertos ocupados o identificar procesos conflictivos.
-- Reiniciar bases de datos locales sin abrir varias herramientas de administración.
-- Recuperar acceso root en MySQL o MariaDB cuando se ha olvidado la contraseña.
+La documentación completa está en la carpeta [`docs/`](docs/README.md). Empieza por el índice o salta directamente a la sección que necesites:
 
-## Limitaciones
+| Sección | Contenido |
+|---------|-----------|
+| [Instalación y ejecución](docs/instalacion.md) | Requisitos por plataforma y formas de ejecutar la herramienta. |
+| [Configuración](docs/configuracion.md) | Archivo `gestor_bbdd.conf`, rutas personalizadas y registro de actividad. |
+| [Menú y funcionalidades](docs/menu.md) | Opciones del menú, modo práctica y qué detecta el script. |
+| [Modo CLI](docs/cli.md) | Uso no interactivo desde terminal y salida JSON. |
+| [Interfaz gráfica](docs/gui.md) | GUI en PySide6: instalación, arquitectura y pestañas. |
+| [Comprobaciones de salud](docs/salud.md) | Pruebas de conectividad y *timeouts*. |
+| [Contenedores y Compose](docs/contenedores.md) | Gestión de Docker, Podman y proyectos Docker Compose. |
+| [Sistemas de init](docs/sistemas-init.md) | Soporte para systemd, SysVinit y OpenRC. |
+| [Motores y entornos soportados](docs/motores.md) | Catálogo de motores/entornos y novedades del proyecto. |
+| [Referencia](docs/referencia.md) | Diferencias entre plataformas, casos de uso, limitaciones y seguridad. |
 
-- El proyecto está diseñado específicamente para Windows.
-- Algunas rutas y comprobaciones asumen estructuras típicas de XAMPP, WAMP, Laragon y MAMP.
-- El reseteo de contraseña root está orientado a instalaciones locales de MySQL/MariaDB.
-- Algunas operaciones dependen de que los ejecutables del motor estén en rutas esperadas o disponibles en el PATH.
+---
 
-## Seguridad y recomendaciones
-
-- Ejecuta la herramienta solo en equipos de laboratorio, desarrollo o uso autorizado.
-- Revisa los cambios de puerto antes de aplicarlos en archivos de configuración.
-- Usa la opción de reseteo de contraseña root con precaución, ya que detiene temporalmente el servidor.
-- Mantén los servicios en modo manual si trabajas con varios motores para evitar conflictos al iniciar Windows.
-
-## Posibles mejoras
-
-- Exportar diagnósticos a un archivo de log.
-- Detectar más motores y más distribuciones locales.
-- Permitir configuración persistente del número máximo de servidores activos.
-- Añadir una interfaz gráfica.
-- Mejorar la detección de rutas y archivos de configuración personalizados.
-
-## Autoría
+## Autoría y licencia
 
 Autor: entreunosyceros.net
 
-## Licencia
-
-Este proyecto se distribuye bajo la licencia MIT.
+Este proyecto se distribuye bajo la licencia **MIT**.

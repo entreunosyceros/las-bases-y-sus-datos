@@ -1,0 +1,33 @@
+# Archivo de configuracion del Gestor de Bases de Datos
+# Copia este archivo como gestor_bbdd.conf junto al script o en:
+#   Linux:   ~/.config/gestor_bbdd.conf
+#   Windows: %APPDATA%\gestor_bbdd.conf
+#
+# Precedencia: valores por defecto < este archivo < variables de entorno
+#
+# Variables de entorno equivalentes:
+#   GESTOR_BD_CONF, GESTOR_BD_MAX_ACTIVOS, GESTOR_BD_EXTRA_PATHS,
+#   GESTOR_BD_IGNORAR_MOTORES, GESTOR_BD_HEALTH_TIMEOUT,
+#   GESTOR_BD_LOG_ENABLED, GESTOR_BD_LOG_FILE
+
+# Numero maximo de bases de datos activas simultaneamente
+MAX_ACTIVOS=2
+
+# Rutas extra de busqueda (Linux: separadas por ':', Windows: por ';')
+EXTRA_PATHS=/opt/stacks:/datos/bd
+
+# Terminal preferida en Linux (gnome-terminal, konsole, xterm, etc.)
+TERMINAL=
+
+# Motores a ignorar en la deteccion (separados por coma)
+IGNORAR_MOTORES=cassandra,firebird
+
+# Timeout en segundos para comprobaciones de salud
+HEALTH_TIMEOUT=3
+
+# Registro de actividad (true/false)
+LOG_ENABLED=false
+LOG_FILE=/var/log/gestor_bbdd.log
+
+# El log registra acciones como: start, stop, restart, health-check,
+# export-diagnostico y operaciones sobre contenedores Docker/Podman.
