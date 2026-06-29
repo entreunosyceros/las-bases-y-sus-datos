@@ -2,6 +2,8 @@
 
 # Interfaz gráfica (GUI)
 
+<img width="897" height="639" alt="GUI-las-bases-y-sus-datos" src="https://github.com/user-attachments/assets/14155335-88dd-4408-be1e-293dd72a6f32" />
+
 La carpeta `gui/` contiene una interfaz gráfica opcional construida con **PySide6** (Qt 6, licencia LGPL). Es un **cliente ligero**: no gestiona servicios, procesos ni puertos por su cuenta, sino que **invoca a los scripts en modo CLI y consume su salida JSON**. Toda la lógica sigue viviendo en `gestor_bbdd.sh` / `gestor_bbdd.ps1`.
 
 ---
